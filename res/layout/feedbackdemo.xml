@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView 
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent"
+>
+<LinearLayout
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+<TextView
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:text="按键反馈有两种：声音和震动\n声音：playSoundEffect\n这个函数的执行取决于系统设置，当系统开启按键音的时候，单击事件默认会发声音，可以使用\nandroid:soundEffectsEnabled=false\n来禁用单击按键音，如果系统禁用了按键音，调用此函数不能强制发出声音。\n震动：performHapticFeedback\n与按键音类似，最大的不同在于可以忽略系统设置而强制震动\nHapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING\n默认行为是长按键时震动，当然，也可以禁用\nandroid:hapticFeedbackEnabled=false"
+/>
+
+<TextView
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:text="default\nClick Sound Effects from system setting\nLong Click Haptic Feedback from system setting"
+/>
+<Button
+  android:id="@+id/btn_default"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:text="default"  
+/>
+<TextView
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:text="Disable\nDisable Click Sound Effects\nDisable Long Click Haptic Feedback"
+/>
+<Button
+  android:id="@+id/btn_disable"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:soundEffectsEnabled="false"
+  android:hapticFeedbackEnabled="false"
+  android:text="disable"  
+/>
+<TextView
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:text="custom\nClick Haptic Feedback\nClick don't ignore system setting\nLong Click Sound Effects"
+/>
+<Button
+  android:id="@+id/btn_custom"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:soundEffectsEnabled="true"
+  android:hapticFeedbackEnabled="false"
+  android:text="custom"  
+/>
+</LinearLayout>
+</ScrollView>
