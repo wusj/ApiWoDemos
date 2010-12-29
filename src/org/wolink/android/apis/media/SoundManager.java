@@ -4,14 +4,13 @@ import java.util.HashMap;
 import java.util.Vector;
 
 import android.content.Context;
-import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Handler;
 
 public class SoundManager {
     private SoundPool mSoundPool;
-    private HashMap<String, Integer> mSoundPoolMap;
+    private HashMap<String, Sound> mSoundPoolMap;
     private AudioManager mAudioManager;
     private Context mContext;
     private Handler mHandler = new Handler();
@@ -35,6 +34,14 @@ public class SoundManager {
     	// Nothing
     }
     
+    private final class Sound {
+    	public int id;
+    	public int time;
+    	public Sound(int soundId, int time) {
+    		this.id = soundId;
+    		this.time = time;
+    	}
+    }
     /**
      * Initializes the storage for the sounds
      *
@@ -45,7 +52,7 @@ public class SoundManager {
         mContext = theContext;
         mSoundPool = new SoundPool(1,
                 AudioManager.STREAM_MUSIC, 0);
-        mSoundPoolMap = new HashMap<String, Integer>();
+        mSoundPoolMap = new HashMap<String, Sound>();
         mAudioManager = (AudioManager) mContext
                 .getSystemService(Context.AUDIO_SERVICE);
     }
@@ -57,8 +64,9 @@ public class SoundManager {
      * @param SoundID - The Android ID for the Sound asset.
      */
 
-    public void addSound(String key, int SoundID) {
-        mSoundPoolMap.put(key, mSoundPool.load(mContext, SoundID, 1));
+    public void addSound(String key, int SoundID, int time) {
+    	Sound sound = new Sound(mSoundPool.load(mContext, SoundID, 1), time);
+        mSoundPoolMap.put(key, sound);
     }
     
     /**
@@ -66,11 +74,11 @@ public class SoundManager {
      * @param key the key we need to get the sound later
      * @param afd  the file store in the asset
      */
-    public void addSound(String key, AssetFileDescriptor afd) {
-        mSoundPoolMap.put(key, mSoundPool.load(
-                afd.getFileDescriptor(),
-                afd.getStartOffset(), afd.getLength(), 1));
-    }
+//    public void addSound(String key, AssetFileDescriptor afd) {
+//        mSoundPoolMap.put(key, mSoundPool.load(
+//                afd.getFileDescriptor(),
+//                afd.getStartOffset(), afd.getLength(), 1));
+//    }
    
     /**
      * play the sound loaded to the SoundPool by the key we set
@@ -111,7 +119,7 @@ public class SoundManager {
     	stopSound();
         if (mSoundPoolMap.size() > 0) {
             for (String key : mSoundPoolMap.keySet()) {
-                mSoundPool.unload(mSoundPoolMap.get(key));
+                mSoundPool.unload(mSoundPoolMap.get(key).id);
             }
         }
         mSoundPool.release();
@@ -123,14 +131,19 @@ public class SoundManager {
     private void playNextSound() {
     	if (mSoundQueue.isEmpty() != true) {
 	    	String key = mSoundQueue.remove(0);
-	    	int soundId = mSoundPoolMap.get(key);
-	        float streamVolume = 0.0f;
-	        streamVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-	        streamVolume /= mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-	        
-	        curStreamId = mSoundPool.play(soundId, streamVolume, streamVolume, 1, 0, 1.0f); 
-	        
-	        mHandler.postDelayed(mPlayNext, 500);
+	    	Sound sound = mSoundPoolMap.get(key);
+	    	if (sound != null) {
+		        float streamVolume = 0.0f;
+		        streamVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+		        streamVolume /= mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+		        
+		        curStreamId = mSoundPool.play(sound.id, streamVolume, streamVolume, 1, 0, 1.0f); 
+		        
+		        mHandler.postDelayed(mPlayNext, sound.time);
+	    	}
+	    	else {
+	    		playNextSound();
+	    	}
 	    }
     }
     
