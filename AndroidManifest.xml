@@ -26,6 +26,14 @@
         		<category android:name="org.wolink.android.category.SAMPLE_CODE" />
         	</intent-filter>
         </activity>
+        
+        <!-- graphic sample -->
+        <activity android:name=".graphic.ScreenShot" android:label="Graphic/ScreenShot">
+        	<intent-filter>
+        		<action android:name="android.intent.action.MAIN" />
+        		<category android:name="org.wolink.android.category.SAMPLE_CODE" />
+        	</intent-filter>
+        </activity>
 
     </application>
     <uses-sdk android:minSdkVersion="8" />
