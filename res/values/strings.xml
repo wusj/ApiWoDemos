@@ -2,4 +2,7 @@
 <resources>
     <string name="hello">Hello World, ApiWoDemos!</string>
     <string name="app_name">ApiWoDemos</string>
+    
+    <!-- Web Demo -->
+    <string name="webviewdemo_intro">Demonstrates an embedded WebView and two-way communication between the HTML document and the hosting activity.</string>
 </resources>
