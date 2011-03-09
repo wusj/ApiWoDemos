@@ -7,28 +7,28 @@ import javax.microedition.khronos.egl.EGLDisplay;
 import javax.microedition.khronos.egl.EGLSurface;
 import javax.microedition.khronos.opengles.GL;
 import javax.microedition.khronos.opengles.GL10;
-import javax.microedition.khronos.opengles.GL11;
+//import javax.microedition.khronos.opengles.GL11;
 import javax.microedition.khronos.opengles.GL11ExtensionPack;
 
 import org.wolink.android.apis.R;
 
 import android.app.Activity;
-import android.graphics.Bitmap;
+//import android.graphics.Bitmap;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLU;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.util.DisplayMetrics;
+//import android.util.DisplayMetrics;
 
 public class ScreenShot extends Activity {
-	private Bitmap mSavedBM;
+	//private Bitmap mSavedBM;
 	private EGL10 egl;
 	private EGLDisplay display;
 	private EGLConfig config;
 	private EGLSurface surface;
 	private EGLContext eglContext;
-	private GL11 gl;
-	private int width, height;
+	//private GL11 gl;
+	//private int width, height;
 	private GLSurfaceView mView;
 
     private class Renderer implements GLSurfaceView.Renderer {
@@ -256,11 +256,11 @@ public class ScreenShot extends Activity {
         mView.setRenderer(new Renderer());
         
         // get the screen width and height
-        DisplayMetrics dm = new DisplayMetrics();
-        int screenWidth = dm.widthPixels;
-        int screenHeight = dm.heightPixels;
+        //DisplayMetrics dm = new DisplayMetrics();
+        //int screenWidth = dm.widthPixels;
+        //int screenHeight = dm.heightPixels;
         
-        String SCREENSHOT_DIR = "/screenshots";
+        //String SCREENSHOT_DIR = "/screenshots";
         initGLFr(); // GLView initialized.
         //savePixels(0, 10, screenWidth, screenHeight, gl); // this gets the screen to the mSavedBm.
         //saveBitmap(mSavedBM, SCREENSHOT_DIR, "capturedImage");
@@ -283,7 +283,7 @@ public class ScreenShot extends Activity {
     	eglContext = egl.eglCreateContext(display, config, EGL10.EGL_NO_CONTEXT, null);
     	surface = egl.eglCreateWindowSurface(display, config, mView, null);
     	egl.eglMakeCurrent(display, surface, surface, eglContext);
-    	gl = (GL11)eglContext.getGL();
+    	//gl = (GL11)eglContext.getGL();
     }
     
 }
