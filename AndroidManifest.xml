@@ -27,6 +27,14 @@
         	</intent-filter>
         </activity>
 
+        <!-- web sample -->
+        <activity android:name=".web.WebViewDemo" android:label="Web/WebViewDemo">
+        	<intent-filter>
+        		<action android:name="android.intent.action.MAIN" />
+        		<category android:name="org.wolink.android.category.SAMPLE_CODE" />
+        	</intent-filter>
+        </activity>
+
     </application>
     <uses-sdk android:minSdkVersion="8" />
 
