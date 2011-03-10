@@ -34,9 +34,17 @@
         		<category android:name="org.wolink.android.category.SAMPLE_CODE" />
         	</intent-filter>
         </activity>
-
+        
         <!-- web sample -->
         <activity android:name=".web.WebViewDemo" android:label="Web/WebViewDemo">
+        	<intent-filter>
+        		<action android:name="android.intent.action.MAIN" />
+        		<category android:name="org.wolink.android.category.SAMPLE_CODE" />
+        	</intent-filter>
+        </activity>
+
+		<!-- touch sample -->
+        <activity android:name=".touch.MultiTouchDemo" android:label="Touch/MultiTouch">
         	<intent-filter>
         		<action android:name="android.intent.action.MAIN" />
         		<category android:name="org.wolink.android.category.SAMPLE_CODE" />
@@ -52,7 +60,7 @@
         </activity>
         <activity android:name=".service.ServiceDemoActivity2" android:label="Service/ServiceDemo" />
         <service android:name=".service.DemoService" android:exported="true" />      
-             		
+            
     </application>
     <uses-sdk android:minSdkVersion="8" />
 
