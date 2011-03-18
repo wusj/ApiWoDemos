@@ -34,6 +34,20 @@
         		<category android:name="org.wolink.android.category.SAMPLE_CODE" />
         	</intent-filter>
         </activity>
+        <activity android:name=".graphic.GroupIconDemo" android:label="Graphic/GroupIconDemo">
+        	<intent-filter>
+        		<action android:name="android.intent.action.MAIN" />
+        		<category android:name="org.wolink.android.category.SAMPLE_CODE" />
+        	</intent-filter>
+        </activity>
+        <activity-alias android:name=".graphic.CreateShortcuts"
+            android:targetActivity=".graphic.GroupIconDemo"
+            android:label="Create Group Shortcut">
+            <intent-filter>
+                <action android:name="android.intent.action.CREATE_SHORTCUT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+		</activity-alias>
         
         <!-- web sample -->
         <activity android:name=".web.WebViewDemo" android:label="Web/WebViewDemo">
