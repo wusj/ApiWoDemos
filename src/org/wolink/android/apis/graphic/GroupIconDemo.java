@@ -49,27 +49,31 @@ public class GroupIconDemo extends Activity implements OnItemClickListener {
         Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
         mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
         
-        Paint mPaint = new Paint();
-        mPaint.setAntiAlias(true);
-        //mPaint.setDither(true);
-        mPaint.setColor(0x88FF0000);
-        mPaint.setStyle(Paint.Style.STROKE);
-        //mPaint.setStrokeJoin(Paint.Join.ROUND);
-        //mPaint.setStrokeCap(Paint.Cap.ROUND);
-        mPaint.setStrokeWidth(2);
+//        Paint mPaint = new Paint();
+//        mPaint.setAntiAlias(true);
+//        mPaint.setDither(true);
+//        mPaint.setColor(0x88FF0000);
+//        mPaint.setStyle(Paint.Style.STROKE);
+//        mPaint.setStrokeJoin(Paint.Join.ROUND);
+//        mPaint.setStrokeCap(Paint.Cap.ROUND);
+//        mPaint.setStrokeWidth(2);
         
         mApps = getPackageManager().queryIntentActivities(mainIntent, 0);
         
         mBitmaps = new LinkedList<Bitmap>();
         for(int i = 0; i < mApps.size() / 9; i++) {
         	Bitmap bm = Bitmap.createBitmap(72, 72, Bitmap.Config.ARGB_8888);
+        	bm.setDensity(240);
         	Canvas canvas = new Canvas(bm);
-        	canvas.drawRoundRect(new RectF(0f, 0f, 71f, 71f), 4.0f, 4.0f, mPaint);
+//        	canvas.drawRoundRect(new RectF(0f, 0f, 72f, 72f), 8.0f, 8.0f, mPaint);
+        	Drawable d1 = getResources().getDrawable(R.drawable.icon_back);
+        	d1.setBounds(new Rect(0, 0, 72, 72));
+        	d1.draw(canvas);
         	for (int j = 0; j < 9; j++) {
         		int index = i*9 + j;
         		Drawable d = mApps.get(index).activityInfo.loadIcon(getPackageManager());
-        		int x = 4 + 20 * (j / 3) + 2 * (j/3);
-        		int y = 4 + 20 * (j % 3) + 2 * (j % 3);
+        		int y = 4 + 20 * (j / 3) + 2 * (j/3);
+        		int x = 4 + 20 * (j % 3) + 2 * (j % 3);
         		d.setBounds(new Rect(x, y,  x+20, y+20));
         		d.draw(canvas);
         	}

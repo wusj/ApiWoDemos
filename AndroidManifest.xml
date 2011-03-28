@@ -48,6 +48,12 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 		</activity-alias>
+        <activity android:name=".graphic.BuiltInDrawable" android:label="Graphic/BuiltInDrawable">
+        	<intent-filter>
+        		<action android:name="android.intent.action.MAIN" />
+        		<category android:name="org.wolink.android.category.SAMPLE_CODE" />
+        	</intent-filter>
+        </activity>
         
         <!-- web sample -->
         <activity android:name=".web.WebViewDemo" android:label="Web/WebViewDemo">
